@@ -23,31 +23,41 @@
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
   color:var(--ink);
+  background:var(--paper);
+  height:100dvh;height:100vh;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.wrap{
+  width:100%;max-width:480px;
+  margin:0 auto;
+  display:flex;flex-direction:column;
+  height:100%;
   background:radial-gradient(900px 500px at 12% -5%,#fbf6ec,transparent 60%),
              radial-gradient(800px 600px at 110% 8%,#eef4ef,transparent 55%),var(--paper);
-  min-height:100vh;display:flex;justify-content:center;padding:26px 14px 60px;
 }
-.wrap{width:100%;max-width:440px}
-.tagline{text-align:center;margin-bottom:14px}
-.tagline b{font-size:13px;color:var(--emerald-deep);font-weight:700}
-.tagline span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.tagline{display:none}/* hidden on mobile — info lives in onboarding */
 
 /* ── APP SHELL ── */
 .app{
-  background:#fff;border:1px solid var(--line);border-radius:30px;overflow:hidden;
-  box-shadow:0 30px 70px -34px rgba(8,40,30,.55);
-  display:flex;flex-direction:column;height:842px;position:relative;
+  background:#fff;
+  border:none;border-radius:0;overflow:hidden;
+  box-shadow:none;
+  display:flex;flex-direction:column;
+  flex:1;
+  position:relative;
+  min-height:0;
 }
 
 /* topbar */
-.bar{background:linear-gradient(180deg,var(--emerald-deep),var(--emerald));color:#eafff6;padding:18px 20px 16px;flex:none}
+.bar{background:linear-gradient(180deg,var(--emerald-deep),var(--emerald));color:#eafff6;padding:14px 18px 12px;flex:none}
 .bar .r1{display:flex;justify-content:space-between;align-items:center}
 .bar .brand{font-size:20px;font-weight:800;letter-spacing:-.02em}
 .bar .brand i{font-style:normal;color:#7af0c0}
-.bar .mo{font-size:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:6px 11px;border-radius:20px;font-weight:700}
+.bar .mo{font-size:11px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:5px 10px;border-radius:20px;font-weight:700;cursor:pointer}
 
 /* panels */
-.panel{flex:1;overflow-y:auto;padding:16px;display:none}
+.panel{flex:1;overflow-y:auto;padding:12px 14px;display:none;min-height:0}
 .panel.show{display:block}
 .panel::-webkit-scrollbar{width:0}
 
@@ -176,10 +186,10 @@ h2.sec small{font-size:11px;color:var(--muted);font-weight:400}
 
 /* nav */
 .nav{display:flex;background:#fff;border-top:1px solid var(--line);flex:none}
-.nav button{flex:1;border:0;background:none;cursor:pointer;font-family:inherit;padding:11px 0 14px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:10px;font-weight:700}
-.nav button .ic{font-size:18px;line-height:1}
+.nav button{flex:1;border:0;background:none;cursor:pointer;font-family:inherit;padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:9px;font-weight:700}
+.nav button .ic{font-size:16px;line-height:1}
 .nav button.on{color:var(--emerald)}
-.nav .addbtn .ic{background:var(--amber);color:#fff;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:20px;margin-top:-2px}
+.nav .addbtn .ic{background:var(--amber);color:#fff;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:18px;margin-top:-2px}
 
 /* toast */
 .toast{position:absolute;left:50%;bottom:86px;transform:translateX(-50%) translateY(20px);
@@ -188,12 +198,34 @@ h2.sec small{font-size:11px;color:var(--muted);font-weight:400}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .empty{text-align:center;color:var(--muted);font-size:12.5px;padding:26px 10px;line-height:1.7}
-.note{font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5;padding:0 6px}
+/* settings */
+.set-hero{background:linear-gradient(135deg,var(--emerald-deep),var(--emerald));border-radius:20px;padding:22px;margin-bottom:18px;color:#eafff6}
+.set-hero .sh{font-size:13px;color:#a9ddca;margin-bottom:4px;letter-spacing:.04em}
+.set-hero .sv{font-size:36px;font-weight:800;line-height:1}
+.set-hero .sd{font-size:12px;color:#cdeedf;margin-top:4px}
+.set-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.set-card h3{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.set-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.set-row:last-child{border-bottom:0;padding-bottom:0}
+.set-row .lbl{font-size:14px;font-weight:600}
+.set-row .sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.set-input{font-family:inherit;font-size:16px;font-weight:700;color:var(--emerald-deep);border:0;background:var(--emerald-soft);border-radius:10px;padding:8px 12px;width:140px;text-align:right;outline:none}
+.set-input:focus{box-shadow:0 0 0 2px var(--emerald)}
+.set-name{font-family:inherit;font-size:14px;color:var(--ink);border:0;background:var(--paper);border-radius:10px;padding:8px 12px;width:160px;outline:none}
+.set-name:focus{box-shadow:0 0 0 2px var(--emerald)}
+.set-save{width:100%;border:0;background:var(--emerald);color:#fff;font-family:inherit;font-weight:700;font-size:15px;padding:15px;border-radius:14px;cursor:pointer;box-shadow:0 10px 22px -10px rgba(12,107,84,.7);margin-top:4px}
+.set-save:active{transform:scale(.98)}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.preset{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit}
+.preset:hover{border-color:var(--emerald);color:var(--emerald)}
+.preset.on{background:var(--emerald-soft);border-color:var(--emerald);color:var(--emerald-deep)}
+.danger-btn{width:100%;border:1.5px solid #f3c9c4;background:#fff;color:var(--red);font-family:inherit;font-weight:700;font-size:13px;padding:12px;border-radius:12px;cursor:pointer;margin-top:8px}
+
 
 /* ── ONBOARDING — lives INSIDE .app, stacks over everything ── */
 .ob{
   position:absolute;inset:0;z-index:200;
-  display:flex;overflow:hidden;border-radius:30px;
+  display:flex;overflow:hidden;border-radius:0;
 }
 .ob.gone{display:none}
 .ob-track{
@@ -315,11 +347,6 @@ h2.sec small{font-size:11px;color:var(--muted);font-weight:400}
 </head>
 <body>
 <div class="wrap">
-  <div class="tagline">
-    <b>Kasi — every rupee, accounted for</b>
-    <span>snap any bill · AI reads it · insights update automatically</span>
-  </div>
-
   <div class="app">
     <!-- ══ ONBOARDING (inside .app) ══ -->
     <div class="ob" id="ob">
@@ -465,23 +492,25 @@ h2.sec small{font-size:11px;color:var(--muted);font-weight:400}
     <div class="bar">
       <div class="r1">
         <div class="brand">Kasi<i>.</i></div>
-        <span class="mo" id="moLabel">—</span>
+        <span class="mo" id="moLabel" onclick="tab('settings',document.querySelector('[data-p=settings]'))" style="cursor:pointer">—</span>
       </div>
     </div>
     <div class="panel show" id="p-overview"></div>
     <div class="panel" id="p-insights"></div>
     <div class="panel" id="p-items"></div>
     <div class="panel" id="p-add"></div>
+    <div class="panel" id="p-settings"></div>
     <div class="toast" id="toast"></div>
     <div class="nav">
       <button class="on" data-p="overview" onclick="tab('overview',this)"><span class="ic">◎</span>Overview</button>
       <button data-p="insights" onclick="tab('insights',this)"><span class="ic">✦</span>Insights<span id="insBadge"></span></button>
       <button class="addbtn" data-p="add" onclick="tab('add',this)"><span class="ic">＋</span>Scan bill</button>
       <button data-p="items" onclick="tab('items',this)"><span class="ic">≣</span>Items</button>
+      <button data-p="settings" onclick="tab('settings',this)"><span class="ic">⚙</span>Settings</button>
     </div>
   </div>
-  <div class="note">Your bills are saved privately on this device. Nothing leaves your browser.</div>
-</div>
+  </div><!-- /wrap -->
+</div><!-- /body -->
 
 <script>
 // ── constants ──────────────────────────────────────────────
@@ -492,8 +521,16 @@ const daysBetween=(a,b)=>Math.round((parseD(b)-parseD(a))/DAY);
 const todayISO=()=>new Date().toISOString().slice(0,10);
 const monthOf=s=>s.slice(0,7);
 const monthName=m=>{if(!m)return'—';const[y,mo]=m.split('-');return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo-1]+' '+y};
-const BUDGET=40000;
+let SETTINGS={budget:40000,name:''};
+function getBudget(){return SETTINGS.budget||40000;}
 const BUCKETS={capex:{name:'Capex',ic:'🪑'},refills:{name:'Refills',ic:'🧴'},food:{name:'Food',ic:'🥬'}};
+
+async function loadSettings(){
+  try{const r=await window.storage.get('kasi_settings');if(r&&r.value)SETTINGS={...SETTINGS,...JSON.parse(r.value)};}catch(e){}
+}
+async function saveSettings(){
+  try{await window.storage.set('kasi_settings',JSON.stringify(SETTINGS));}catch(e){}
+}
 
 // ── ONBOARDING ─────────────────────────────────────────────
 const OB_KEY='kasi_ob3';
@@ -650,7 +687,7 @@ function renderOverview(){
   const fm=focusMonth();
   const mb=BILLS.filter(b=>monthOf(b.date)===fm);
   const spent=mb.reduce((s,b)=>s+b.items.reduce((t,i)=>t+i.amt,0),0);
-  const pct=Math.min(100,Math.round(spent/BUDGET*100));
+  const pct=Math.min(100,Math.round(spent/getBudget()*100));
   const bk={capex:0,refills:0,food:0};
   mb.forEach(b=>b.items.forEach(i=>bk[i.bucket]=(bk[i.bucket]||0)+i.amt));
   const idx=itemsIndex();
@@ -663,9 +700,9 @@ function renderOverview(){
   }
   el.innerHTML=`
     <div class="budget">
-      <div class="top"><div><div class="lbl">Spent in ${monthName(fm)}</div><div class="big">${fmt(spent)}</div></div><div class="of">of ${fmt(BUDGET)}<br>budget</div></div>
+      <div class="top"><div><div class="lbl">Spent in ${monthName(fm)}</div><div class="big">${fmt(spent)}</div></div><div class="of">of ${fmt(getBudget())}<br>budget</div></div>
       <div class="pbar"><i data-w="${pct}%"></i></div>
-      <div class="foot"><span>${pct}% used</span><span>${fmt(Math.max(0,BUDGET-spent))} left</span></div>
+      <div class="foot"><span>${pct}% used</span><span>${fmt(Math.max(0,getBudget()-spent))} left</span></div>
     </div>
     <div class="buckets">
       ${['capex','refills','food'].map(k=>{const pc=spent?Math.round((bk[k]||0)/spent*100):0;
@@ -700,10 +737,10 @@ function buildInsights(){
   Object.values(idx).forEach(it=>runrate+=stats(it).monthly);
   if(capexThis>0)cards.push({type:'info',score:60,icon:'🪑',
     title:`${fmt(capexThis)} of this month was Capex`,
-    body:`One-off buys don't repeat. Your real recurring run-rate is <b>${fmt(runrate)}/month</b> — hold that under ${fmt(BUDGET)}.`});
-  if(runrate>BUDGET*0.88)cards.push({type:'warn',score:55,icon:'⚠️',
+    body:`One-off buys don't repeat. Your real recurring run-rate is <b>${fmt(runrate)}/month</b> — hold that under ${fmt(getBudget())}.`});
+  if(runrate>getBudget()*0.88)cards.push({type:'warn',score:55,icon:'⚠️',
     title:'Run-rate is close to your ceiling',
-    body:`At ~${fmt(runrate)}/month you're near your ${fmt(BUDGET)} budget. Refills are the easiest lever.`});
+    body:`At ~${fmt(runrate)}/month you're near your ${fmt(getBudget())} budget. Refills are the easiest lever.`});
   let top=null;
   Object.values(idx).forEach(it=>{const s=stats(it);if(it.bucket==='refills'&&s.n>=2&&(!top||s.monthly>top.m))top={name:it.name,m:s.monthly};});
   if(top&&top.m>0)cards.push({type:'info',score:20,icon:'🔁',
@@ -903,13 +940,95 @@ async function confirmSave(){
 
 function resetScan(){scanState={img:null,b64:null,parsed:null,date:todayISO(),icon:'🧾'};renderAdd();}
 
-// ── nav / toast ────────────────────────────────────────────
+// ── SETTINGS ───────────────────────────────────────────────
+function renderSettings(){
+  const b=getBudget();
+  const fm=focusMonth();
+  const spent=BILLS.filter(bl=>monthOf(bl.date)===fm)
+    .reduce((s,bl)=>s+bl.items.reduce((t,i)=>t+i.amt,0),0);
+  const pct=Math.min(100,Math.round(spent/b*100));
+  const barColor=pct>=100?'var(--red)':pct>=80?'var(--amber)':'#7af0c0';
+  const PRESETS=[20000,30000,40000,50000,75000,100000];
+  const el=document.getElementById('p-settings');
+  el.innerHTML=`
+    <h2 class="sec">Settings</h2>
+
+    <div class="set-hero">
+      <div class="sh">MONTHLY SPENDING TARGET</div>
+      <div class="sv">${fmt(b)}</div>
+      <div class="sd">${pct}% used this month · ${fmt(Math.max(0,b-spent))} remaining</div>
+      <div style="height:8px;background:rgba(255,255,255,.16);border-radius:4px;margin-top:12px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${barColor};border-radius:4px;transition:width .8s"></div>
+      </div>
+    </div>
+
+    <div class="set-card">
+      <h3>Your monthly target</h3>
+      <div class="set-row">
+        <div><div class="lbl">Budget (Rs)</div><div class="sub">How much you want to spend per month</div></div>
+        <input class="set-input" id="s-budget" type="number" inputmode="numeric" value="${b}" min="1000" step="1000">
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted);margin-bottom:6px">Quick presets</div>
+      <div class="preset-row">
+        ${PRESETS.map(p=>`<button class="preset ${p===b?'on':''}" onclick="applyPreset(${p})">${fmt(p)}</button>`).join('')}
+      </div>
+    </div>
+
+    <div class="set-card">
+      <h3>Profile</h3>
+      <div class="set-row">
+        <div><div class="lbl">Your name</div><div class="sub">Shows on the Overview greeting</div></div>
+        <input class="set-name" id="s-name" type="text" placeholder="e.g. Shahen" value="${SETTINGS.name||''}">
+      </div>
+    </div>
+
+    <button class="set-save" onclick="saveSettingsUI()">Save settings</button>
+
+    <div class="set-card" style="margin-top:14px">
+      <h3>Data</h3>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px;line-height:1.5">${BILLS.length} bill${BILLS.length!==1?'s':''} saved on this device · all data is local, nothing is uploaded.</div>
+      <button class="danger-btn" onclick="confirmClear()">Clear all bill history</button>
+    </div>
+  `;
+}
+
+function applyPreset(val){
+  const inp=document.getElementById('s-budget');
+  if(inp)inp.value=val;
+  renderSettings();
+  // immediately update so presets highlight correctly
+  SETTINGS.budget=val;
+  renderSettings();
+}
+
+async function saveSettingsUI(){
+  const bVal=parseInt(document.getElementById('s-budget')?.value)||40000;
+  const nVal=(document.getElementById('s-name')?.value||'').trim();
+  SETTINGS.budget=Math.max(1000,bVal);
+  SETTINGS.name=nVal;
+  await saveSettings();
+  renderAll();
+  renderSettings();
+  toast(`Saved — monthly target set to ${fmt(SETTINGS.budget)}`);
+}
+
+async function confirmClear(){
+  if(!confirm('This will delete all your bill history. Are you sure?'))return;
+  BILLS=[];
+  await saveBills();
+  renderAll();
+  renderSettings();
+  toast('Bill history cleared');
+}
+
+
 function tab(name,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
   document.getElementById('p-'+name).classList.add('show');
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
   (btn||document.querySelector('[data-p='+name+']')).classList.add('on');
   if(name==='add')renderAdd();
+  if(name==='settings')renderSettings();
   document.querySelector('.panel.show').scrollTop=0;
 }
 let toastT;
@@ -918,7 +1037,8 @@ function toast(msg){
   clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3600);
 }
 function renderAll(){
-  document.getElementById('moLabel').textContent=monthName(focusMonth());
+  const label=SETTINGS.name?`${SETTINGS.name} · ${monthName(focusMonth())}`:monthName(focusMonth());
+  document.getElementById('moLabel').textContent=label;
   renderOverview();renderInsights();renderItems();
 }
 
@@ -952,7 +1072,7 @@ self.addEventListener('fetch',e=>{
 })();
 
 // ── init ───────────────────────────────────────────────────
-(async()=>{await loadBills();renderAll();})();
+(async()=>{await loadSettings();await loadBills();renderAll();})();
 </script>
 </body>
 </html>
